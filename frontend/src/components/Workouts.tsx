@@ -7,11 +7,10 @@ import useWorkoutsContext from "../hooks/useWorkoutsContext";
 function Workouts(workout: workoutTypes) {
   const { dispatch } = useWorkoutsContext();
   const handleDelete = async () => {
-    axios
+    await axios
       .delete(`/api/workouts/${workout._id}`)
-      .then((res) => {
-        // deletes workouts in context
-        dispatch({ type: "DELETE_WORKOUT", payload: res.data });
+      .then(() => {
+        dispatch({ type: "DELETE_WORKOUT", payload: workout._id });
       })
       .catch((err) => {
         console.error(err);

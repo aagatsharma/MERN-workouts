@@ -6,8 +6,8 @@ import useWorkoutsContext from "../hooks/useWorkoutsContext";
 function WorkoutForm() {
   const { dispatch } = useWorkoutsContext();
   const [title, setTitle] = useState("");
-  const [reps, setReps] = useState<number | undefined>(undefined);
-  const [load, setLoad] = useState<number | undefined>(undefined);
+  const [reps, setReps] = useState("");
+  const [load, setLoad] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,8 +23,8 @@ function WorkoutForm() {
       .then((res) => {
         dispatch({ type: "CREATE_WORKOUT", payload: res.data });
         setTitle("");
-        setReps(undefined);
-        setLoad(undefined);
+        setReps("");
+        setLoad("");
       })
       .catch((err) => {
         console.error(err);
@@ -52,7 +52,7 @@ function WorkoutForm() {
             <input
               type="number"
               id="load"
-              onChange={(e) => setLoad(parseFloat(e.target.value))}
+              onChange={(e) => setLoad(e.target.value)}
               value={load}
               className="border-2 border-red-400 focus:outline-none p-1"
             />
@@ -63,7 +63,7 @@ function WorkoutForm() {
             <input
               type="number"
               id="reps"
-              onChange={(e) => setReps(parseFloat(e.target.value))}
+              onChange={(e) => setReps(e.target.value)}
               value={reps}
               className="border-2 border-red-400 focus:outline-none p-1"
             />

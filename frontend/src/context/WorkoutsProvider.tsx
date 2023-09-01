@@ -4,7 +4,7 @@ import { workoutTypes } from "../../types";
 export type WorkoutsAction =
   | { type: "SET_WORKOUTS"; payload: workoutTypes[] }
   | { type: "CREATE_WORKOUT"; payload: workoutTypes }
-  | { type: "DELETE_WORKOUT"; payload: workoutTypes };
+  | { type: "DELETE_WORKOUT"; payload: string | undefined };
 
 interface WorkoutsContextState {
   workouts: workoutTypes[];
@@ -37,7 +37,7 @@ const workoutsReducer = (
       };
     case "DELETE_WORKOUT":
       return {
-        workouts: state.workouts.filter((w) => w._id !== action.payload._id),
+        workouts: state.workouts.filter((w) => w._id !== action.payload),
       };
     default:
       return state;
