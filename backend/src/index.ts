@@ -2,9 +2,16 @@ import express from "express";
 import "dotenv/config";
 import router from "./router";
 import mongoose from "mongoose";
+import cors from "cors";
 
 //express app
 const app = express();
+
+app.use(
+  cors({
+    credentials: true,
+  })
+);
 
 //middleware for all
 app.use(express.json());
@@ -14,7 +21,8 @@ app.use("/", router());
 
 //connect to db
 mongoose
-  .connect(process.env.MONGO_URI)
+  // .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_LOCAL)
   .then(() => {
     //listening on port
     app.listen(process.env.PORT, () => {

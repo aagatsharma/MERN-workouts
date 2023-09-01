@@ -10,6 +10,7 @@ function Workouts(workout: workoutTypes) {
     axios
       .delete(`/api/workouts/${workout._id}`)
       .then((res) => {
+        // deletes workouts in context
         dispatch({ type: "DELETE_WORKOUT", payload: res.data });
       })
       .catch((err) => {
